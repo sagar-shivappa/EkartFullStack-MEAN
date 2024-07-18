@@ -7,10 +7,10 @@ require("dotenv").config();
 
 /* Connecting to the database and then starting the server. */
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI + process.env.DB_NAME)
   .then(() => {
     intializeDB();
-    app.listen(PORT, console.log(`Server started on port http://localhost:${PORT}`));
+    app.listen(PORT, console.log(`Server started on port ${PORT}`));
   })
   .catch((err) => {
     console.log(err);

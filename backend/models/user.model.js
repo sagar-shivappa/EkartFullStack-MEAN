@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 /* This is creating a new schema for the product model. */
-const studentSchema = new Schema(
+const userSchema = new Schema(
   {
-    firstName: {
+    user_id: {
+      type: Number,
+      required: true,
+    },
+    user_name: {
       type: String,
       required: true,
     },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    email: {
+    password: {
       type: String,
       required: true,
     },
@@ -21,4 +21,4 @@ const studentSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Student", studentSchema);
+module.exports = mongoose.model("Users", userSchema);
