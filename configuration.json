@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "default_open_files": [
+    "backend/controllers/student.controller.js",
+    "backend/routes/student.route.js",
+    "frontend/src/app/services/http-service.service.ts",
+    "frontend/src/app/components/students-data/students-data.component.html",
+    "frontend/src/app/components/students-data/students-data.component.ts",
+    "frontend/src/app/components/add-student-form/add-student-form.component.html",
+    "frontend/src/app/components/add-student-form/add-student-form.component.ts"
+  ],
+  "read_only_files": [
+    "backend/tests/DeleteStudent.test.js",
+    "backend/tests/GetStudents.test.js",
+    "backend/tests/PostStudent.test.js",
+    "backend/tests/UpdateStudent.test.js",
+    "frontend/src/app/app.component.spec.ts",
+    ".gitignore",
+    "configuration.json"
+  ],
+  "buttons": {
+    "Install Packages": {
+      "command": "npm install"
+    },
+    "Start MongoDB": {
+      "command": "mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log"
+    },
+    "Start Frontend Dev Server": {
+      "command": "npm run client"
+    },
+    "Start Backend API Server": {
+      "command": "npm run server"
+    },
+    "Concurrently Start Both Servers": {
+      "command": "npm start"
+    },
+    "Run Frontend Test Cases": {
+      "command": "npm run testclient"
+    },
+    "Run Backend Test Cases": {
+      "command": "npm run testserver"
+    },
+    "Run All Test Cases": {
+      "command": "npm test"
+    }
+  },
+  "scoring": {
+    "command": "npm install && npm run test",
+    "files": {
+      "frontend/junit.xml": "Angular",
+      "backend/junit.xml": "Node & Express"
+    }
+  },
+  "post_start": {
+    "commands": [
+      "npm install",
+      "mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log"
+    ]
+  },
+  "preview_port": 8000
+}

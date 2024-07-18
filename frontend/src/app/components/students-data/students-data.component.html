@@ -1,0 +1,25 @@
+<app-add-student-form (onAddStudent)="addStudent($event)"></app-add-student-form>
+<div>
+    <table class="table" >
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody data-testid="students-table">
+                <tr *ngFor="let student of students">
+                    <th id="studentId">{{student._id}}</th>
+                    <td id="studentFirstName">{{student.firstName}}</td>
+                    <td id="studentLastName">{{student.lastName}}</td>
+                    <td id="studentEmail">{{student.email}}</td>
+                    <td class="d-flex justify-content-around">
+                        <button class="btn btn-danger" id="deleteBtn-{{student._id}}" (click)="onDeleteClick(student)">Delete</button>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
