@@ -20,7 +20,7 @@ const postLoginUser = async (req, res) => {
         const token = await jwt.sign({ data }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
-        res.status(201).send({ user_name: user.user_name, token });
+        res.status(201).send({ user_name: user.user_name, user_id: data.user_id, token }); // Require UserId for other API calls - SG
       } else {
         res.status(403).send({ message: "User Not found" });
       }
@@ -81,7 +81,7 @@ const addToCart = async (req, res) => {
           { $push: { products: product } },
           { returnOriginal: true }
         );
-        res.status(201).send("Successfully Added to CART");
+        res.status(200).send("Successfully Added to CART"); // changes made to acquire response successfully --SG
       } else {
         res.status(400).send("Invalid Product Information");
       }
@@ -111,7 +111,7 @@ const removeFromCart = async (req, res) => {
   } else {
     Cart.updateOne({ user_id: userId }, { $set: { products: updatedCart } })
       .then((data) => {
-        res.status(201).send("Product Removed Successfully");
+        res.status(200).send("Product Removed Successfully"); // changes made to acquire response successfully --SG
       })
       .catch((error) => res.status(500).send(error));
   }

@@ -29,8 +29,7 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": [],
-            "extraWebpackConfig": "webpack.config.js"
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -58,26 +57,27 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "extraWebpackConfig": "webpack.prod.config.js"
+              ]
             }
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "gadgetStore:build",
             "publicHost": "http://localhost:8000",
-            "extraWebpackConfig": "webpack.config.js",
             "port": 8000
           },
           "configurations": {
             "production": {
-              "browserTarget": "gadgetStore:build:production",
-              "extraWebpackConfig": "webpack.prod.config.js"
+              "browserTarget": "gadgetStore:build:production"
+            },
+            "development": {
+              "browserTarget": "my-project:build:development"
             }
           }
         },
+        "defaultConfiguration": "development",
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
@@ -92,8 +92,7 @@
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": [],
-            "extraWebpackConfig": "webpack.config.js"
+            "scripts": []
           }
         }
       }
