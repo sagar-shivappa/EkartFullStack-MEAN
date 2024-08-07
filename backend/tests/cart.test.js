@@ -87,8 +87,8 @@ describe("CART Details", () => {
       })
       .set("authorization", "Bearer valid");
 
-    expect(res.statusCode).toBe(201);
-    expect(res.text).toBe("Successfully Added to CART");
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("Successfully Added to CART");
   });
 
   it("should not be able to add product which is already in the cart", async () => {
@@ -101,7 +101,7 @@ describe("CART Details", () => {
       .set("authorization", "Bearer valid");
 
     expect(res.statusCode).toBe(400);
-    expect(res.text).toBe("Product Already in the CART");
+    expect(res.body.message).toBe("Product Already in the CART");
   });
 
   it("should not be able to add product, if the product information is invalid", async () => {
@@ -114,7 +114,7 @@ describe("CART Details", () => {
       .set("authorization", "Bearer valid");
 
     expect(res.statusCode).toBe(400);
-    expect(res.text).toBe("Invalid Product Information");
+    expect(res.body.message).toBe("Invalid Product Information");
   });
 
   it("should be able to successfully remove item from the cart", async () => {
@@ -122,8 +122,8 @@ describe("CART Details", () => {
       .delete("/cart/1/123")
       .set("authorization", "Bearer valid");
 
-    expect(res.statusCode).toBe(201);
-    expect(res.text).toBe("Product Removed Successfully");
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("Product Removed Successfully");
   });
 
   it("should throw error if removing unable product id", async () => {
@@ -132,6 +132,6 @@ describe("CART Details", () => {
       .set("authorization", "Bearer valid");
 
     expect(res.statusCode).toBe(404);
-    expect(res.text).toBe("Product not found");
+    expect(res.body.message).toBe("Product not found");
   });
 });

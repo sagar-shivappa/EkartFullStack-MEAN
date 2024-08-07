@@ -20,15 +20,17 @@ const postLoginUser = async (req, res) => {
         const token = await jwt.sign({ data }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
-        res.status(201).send({ user_name: user.user_name, user_id: data.user_id, token }); // Require UserId for other API calls - SG
+        res
+          .status(201)
+          .send({ user_name: user.user_name, user_id: data.user_id, token }); // Require UserId for other API calls - SG
       } else {
         res.status(403).send({ message: "User Not found" });
       }
     } else {
-      res.status(400).send("Validation Error");
+      res.status(400).send({ message: "Validation Error" });
     }
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send({ message: error.message });
   }
 };
 
@@ -39,7 +41,7 @@ const getAllProducts = async (req, res) => {
     if (products.length > 0) {
       res.status(200).send(products);
     } else {
-      res.status(204).send("No products found");
+      res.status(204).send({ message: "No products found" });
     }
   } catch (error) {
     res.status(500).json(error.message);
@@ -53,7 +55,7 @@ const getCartItemsByUserId = async (req, res) => {
     if (cartItems) {
       res.status(200).send(cartItems);
     } else {
-      res.status(404).send("User Not Found");
+      res.status(404).send({ message: "User Not Found" });
     }
   } catch (error) {
     res.status(500).json(error);
@@ -69,7 +71,7 @@ const addToCart = async (req, res) => {
     });
 
     if (cartItems) {
-      res.status(400).send("Product Already in the CART");
+      res.status(400).send({ message: "Product Already in the CART" });
     } else {
       //Get the product using product_id
       const product = await Product.findOne({
@@ -81,9 +83,9 @@ const addToCart = async (req, res) => {
           { $push: { products: product } },
           { returnOriginal: true }
         );
-        res.status(200).send("Successfully Added to CART"); // changes made to acquire response successfully --SG
+        res.status(200).send({ message: "Successfully Added to CART" }); // changes made to acquire response successfully --SG
       } else {
-        res.status(400).send("Invalid Product Information");
+        res.status(400).send({ message: "Invalid Product Information" });
       }
     }
   } catch (error) {
@@ -107,11 +109,11 @@ const removeFromCart = async (req, res) => {
   );
   //Update the cart asper the new product list
   if (productsList.products.length == updatedCart.length) {
-    res.status(404).send("Product not found");
+    res.status(404).send({ message: "Product not found" });
   } else {
     Cart.updateOne({ user_id: userId }, { $set: { products: updatedCart } })
       .then((data) => {
-        res.status(200).send("Product Removed Successfully"); // changes made to acquire response successfully --SG
+        res.status(200).send({ message: "Product Removed Successfully" }); // changes made to acquire response successfully --SG
       })
       .catch((error) => res.status(500).send(error));
   }
