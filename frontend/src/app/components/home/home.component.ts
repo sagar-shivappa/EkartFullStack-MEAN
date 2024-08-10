@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { HttpService } from "src/app/services/http-service.service";
 
@@ -21,31 +22,40 @@ export class HomeComponent implements OnInit {
   cardButton = "Add to cart!";
   navigationButtoName = "Go to Cart!";
 
-  constructor(private httpSer: HttpService, private authSer: AuthService) {}
+  constructor(
+    private httpSer: HttpService,
+    private authSer: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initFun();
   }
 
   initFun() {
-    this.httpSer.getProducts().subscribe((res) => {
-      this.items = res;
-    });
+    this.httpSer.getProducts().subscribe(
+      (res) => {
+        this.items = res;
+      },
+      (err) => {
+        alert(`Something went wrong, please try again!`);
+        this.router.navigate(['/login']);
+      }
+    );
   }
 
   cardButtonClicked(prodId: any) {
-    this.httpSer
-      .addToCart(this.authSer.getUserId(), prodId)
-      .subscribe((res) => {
-        alert(res);
-      },
-      err=>{
-        if((typeof err.error) === 'object' ){
-          alert(err.error.text)
-        }
-        else{
+    this.httpSer.addToCart(this.authSer.getUserId(), prodId).subscribe((res:any) => {
+      alert(res.message);
+    },
+      (err) => {
+        console.log("err ", err)
+        if (typeof err.error === "object") {
+          alert(err.error.message);
+        } else {
           alert(err.error);
         }
-      });
+      }
+    );
   }
 }

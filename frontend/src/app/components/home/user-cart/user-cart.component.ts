@@ -44,17 +44,21 @@ export class UserCartComponent implements OnInit {
   async cardButtonClicked(prodId: any) {
     this.httpSer
       .deleteFromCart(this.authSer.getUserId(), prodId)
-      .subscribe((res) => {
-        alert(res);
+      .subscribe((res:any) => {
+        alert(res.message);
       },
       err=>{
+        console.log(err)
         if((typeof err.error) === 'object' ){
-          alert(err.error.text)
+          alert(err.error.message);
         }
         else{
           alert(err.error);
         }
       });
-    await this.initFun();
+       setTimeout(async () => {
+        await this.initFun();
+      }, 100);
+    
   }
 }
