@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  cardButtonClicked(prodId: any) {
+  addProduct(prodId: any) {
     this.httpSer.addToCart(this.authSer.getUserId(), prodId).subscribe((res:any) => {
       alert(res.message);
     },

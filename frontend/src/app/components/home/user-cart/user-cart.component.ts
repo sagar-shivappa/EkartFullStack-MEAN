@@ -41,7 +41,7 @@ export class UserCartComponent implements OnInit {
     });
   }
 
-  async cardButtonClicked(prodId: any) {
+  async deleteFromCart(prodId: any) {
     this.httpSer
       .deleteFromCart(this.authSer.getUserId(), prodId)
       .subscribe((res:any) => {

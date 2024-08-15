@@ -10,17 +10,18 @@
             class="card-img-top"
             alt="Item Image" />
           <div class="card-body">
-            <h5 class="card-title">{{ item.product_name }}</h5>
-            <p class="card-text">{{ item.product_description }}</p>
+            <h5 class="card-title" id="product_name">{{ item.product_name }}</h5>
+            <p class="card-text" id="description">{{ item.product_description }}</p>
             <div class="row">
-              <p class="card-text col-md-4">Price: ${{ item.price }}</p>
+              <p class="card-text col-md-4" id="price">Price: ${{ item.price }}</p>
               <p class="card-text col-md-4"></p>
               <p class="card-text col-md-4">
                 Discount: {{ item.discount_percentage }}%
               </p>
             </div>
             <div
-              (click)="cardButtonClicked(item.product_id)"
+              (click)="addProduct(item.product_id)"
+              id="addToCart"
               class="btn btn-primary">
               {{ cardButton }}
             </div>
