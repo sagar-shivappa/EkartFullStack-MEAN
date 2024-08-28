@@ -12,6 +12,13 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, {
+      user_name: username,
+      password: password,
+    });
+  }
+
   addToCart(userId: number, product_id: number): Observable<string> {
     let url = `${this.apiUrl}`;
     return this.http.post<any>(`${url}/cart`, {

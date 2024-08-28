@@ -8,18 +8,11 @@ import { Observable } from "rxjs";
 })
 export class AuthService {
   // private apiUrl = environment.apiUrl;
-  private apiUrl = 'http://localhost:8002';
+  private apiUrl = "http://localhost:8002";
   private tokenKey = "auth_token";
   private expirationTime = "";
 
   constructor(private http: HttpClient) {}
-
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, {
-      user_name: username,
-      password: password,
-    });
-  }
 
   setToken(user_name: any, token: any, user_id: any) {
     this.tokenKey = token;
@@ -63,5 +56,7 @@ export class AuthService {
     // Clear token from local storage
     localStorage.removeItem("token");
     localStorage.removeItem("user_name");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("expirationTime");
   }
 }

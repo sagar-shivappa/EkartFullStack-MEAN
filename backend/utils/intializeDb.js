@@ -15,7 +15,7 @@ const intializeDB = async () => {
         product_description: "Sports Running Shoes",
         price: 456,
         discount_percentage: 5,
-        image: "13000",
+        image: "https://images.app.goo.gl/LtcjcTm1jA1SMGvt8",
         product_brand: "PumA",
       },
       {
@@ -24,7 +24,7 @@ const intializeDB = async () => {
         product_description: "Sports Running Shoes",
         price: 789,
         discount_percentage: 5,
-        image: "13000",
+        image: "https://images.app.goo.gl/wS7KetiaQF7YRCceA",
         product_brand: "Wilson",
       },
       {
@@ -33,7 +33,7 @@ const intializeDB = async () => {
         product_description: "Sports Running Shoes",
         price: 9090,
         discount_percentage: 5,
-        image: "13000",
+        image: "https://images.app.goo.gl/SESnXX8LTZZwsqiGA",
         product_brand: "Camel Board",
       },
       {

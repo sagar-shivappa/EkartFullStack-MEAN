@@ -26,12 +26,6 @@ export class AuthGuard implements CanActivate {
     let token = this.authService.getToken();
     let finToken = token === "" ? null : token;
 
-    // if (this.authService.isTokenExpired()) {
-    //   alert('Session expired. Please log in again.');
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
-
     if (finToken != null) {
       return true;
     } else {

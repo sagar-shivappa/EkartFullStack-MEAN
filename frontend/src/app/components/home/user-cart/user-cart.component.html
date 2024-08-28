@@ -1,32 +1,39 @@
 <app-header [navigationButtoName]="navigationButtoName"></app-header>
 <div class="container">
-    <div class="row" *ngIf="cartItems.products.length>0">
-        <div class="row">
-            <div class="col-md-4" *ngFor="let item of cartItems.products">
-              <div class="card mb-4">
-                <img [src]="'https://via.placeholder.com/150'" class="card-img-top" alt="Item Image" />
-                <div class="card-body">
-                  <h5 class="card-title">{{ item.product_name }}</h5>
-                  <p class="card-text">{{ item.product_description }}</p>
-                  <div class="row">
-                    <p class="card-text col-md-4">Price: ${{ item.price }}</p>
-                    <p class="card-text col-md-4"></p>
-                    <p class="card-text col-md-4">
-                      Discount: {{ item.discount_percentage }}%
-                    </p>
-                  </div>
-                  <div
-                    (click)="cardButtonClicked(item.product_id)"
-                    class="btn btn-primary">
-                    {{ cardButton }}
-                  </div>
-                </div>
-              </div>
+  <div class="row" *ngIf="cartItems.products.length > 0">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let item of cartItems.products">
+        <div class="card mb-4">
+          <img
+            [src]="'https://via.placeholder.com/150'"
+            class="card-img-top"
+            alt="Item Image"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.product_name }}</h5>
+            <p class="card-text">{{ item.product_description }}</p>
+            <div class="row">
+              <p class="card-text col-md-4">
+                Price: {{ item.price | currency : "INR" }}
+              </p>
+              <p class="card-text col-md-4"></p>
+              <p class="card-text col-md-4">
+                Discount: {{ item.discount_percentage }}%
+              </p>
+            </div>
+            <div
+              (click)="cardButtonClicked(item.product_id)"
+              class="btn btn-danger"
+            >
+              {{ cardButton }}
             </div>
           </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div *ngIf="cartItems.products.length==0">
-      <div class="col-md-12"><p class="h2 middleOfPage">No item in cart</p></div>
-    </div>
+  <div *ngIf="cartItems.products.length == 0">
+    <div class="col-md-12"><p class="h2 middleOfPage">No item in cart</p></div>
+  </div>
 </div>
