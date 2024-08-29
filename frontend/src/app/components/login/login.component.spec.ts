@@ -8,7 +8,7 @@ import { HeaderComponent } from "../header/header.component";
 import { LoginComponent } from "./login.component";
 import { Router } from "@angular/router";
 
-fdescribe("LoginComponent", () => {
+describe("LoginComponent", () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let httpService: HttpService;
