@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   goToButton() {
-    if (this.navigationButtoName == "Go to Cart!")
+    if (this.navigationButtoName == "Go to Cart")
       this.router.navigate(["cart"]);
     else this.router.navigate(["product"]);
   }

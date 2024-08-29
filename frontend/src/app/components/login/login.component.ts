@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.httpService.login(this.username, this.password).subscribe(
       (response) => {
-        this.router.navigate(["/product"]), alert("Login successful");
+        this.router.navigate(["product"]), alert("Login successful");
         this.authService.setToken(
           this.username,
           response.token,
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         alert(`Login failed: ${error.error.message}`);
-        // Handle login error (show error message, etc.)
       }
     );
   }

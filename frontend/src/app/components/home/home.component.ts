@@ -19,42 +19,38 @@ export class HomeComponent implements OnInit {
       discount_percentage: "5",
     },
   ];
-  cardButton = "Add to cart!";
-  navigationButtoName = "Go to Cart!";
+  cardButton = "Add to Cart";
+  navigationButtoName = "Go to Cart";
 
   constructor(
-    private httpSer: HttpService,
-    private authSer: AuthService,
+    private httpService: HttpService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.initFun();
+    this.getItems();
   }
 
-  initFun() {
-    this.httpSer.getProducts().subscribe(
+  getItems() {
+    this.httpService.getProducts().subscribe(
       (res) => {
         this.items = res;
       },
       (err) => {
         alert(`Something went wrong, please try again!`);
-        this.router.navigate(['/login']);
+        this.router.navigate(["/login"]);
       }
     );
   }
 
-  cardButtonClicked(prodId: any) {
-    this.httpSer.addToCart(this.authSer.getUserId(), prodId).subscribe((res:any) => {
-      alert(res.message);
-    },
+  addProductToCart(prodId: any) {
+    this.httpService.addToCart(this.authService.getUserId(), prodId).subscribe(
+      (res: any) => {
+        alert(res.message);
+      },
       (err) => {
-        console.log("err ", err)
-        if (typeof err.error === "object") {
-          alert(err.error.message);
-        } else {
-          alert(err.error);
-        }
+        alert(err.error.message);
       }
     );
   }

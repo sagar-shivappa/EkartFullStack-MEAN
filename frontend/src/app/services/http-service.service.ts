@@ -11,22 +11,20 @@ export class HttpService {
   apiUrl: string = "http://localhost:8002";
 
   constructor(private http: HttpClient) {}
-
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, {
       user_name: username,
       password: password,
     });
   }
-
-  addToCart(userId: number, product_id: number): Observable<string> {
+  addToCart(userId: number, product_id: number): Observable<Object> {
     let url = `${this.apiUrl}`;
     return this.http.post<any>(`${url}/cart`, {
       user_id: userId,
       product_id: product_id,
     });
   }
-  deleteFromCart(userId: number, product_id: number): Observable<string> {
+  deleteFromCart(userId: number, product_id: number): Observable<Object> {
     let url = `${this.apiUrl}`;
     return this.http.delete<any>(`${url}/cart/${userId}/${product_id}`);
   }

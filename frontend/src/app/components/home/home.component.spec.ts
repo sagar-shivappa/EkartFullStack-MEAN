@@ -35,7 +35,7 @@ describe("HomeComponent", () => {
     expect(component).toBeTruthy();
   }); // Default test case for creatation - SG
 
-  it("should call initFun on ngOnInit and update items", () => {
+  it("should call getItems on ngOnInit and update items", () => {
     const mockProducts = [
       {
         product_id: 1,
@@ -48,24 +48,24 @@ describe("HomeComponent", () => {
     ]; // mock model for final response - SG
 
     spyOn(httpService, "getProducts").and.returnValue(of(mockProducts));
-    component.initFun();
+    component.getItems();
 
     expect(httpService.getProducts).toHaveBeenCalled();
     expect(component.items).toEqual(mockProducts);
   });
 
-  it("should call cardButtonClicked and handle the response", () => {
+  it("should call addProductToCart and handle the response", () => {
     const userId = 1;
     const productId = 1;
-    const mockResponse = "Product added to cart!";
+    const mockResponse = { message: "Product added to cart!" };
 
     spyOn(authService, "getUserId").and.returnValue(userId);
     spyOn(httpService, "addToCart").and.returnValue(of(mockResponse));
     spyOn(window, "alert"); // Mock window alert
 
-    component.cardButtonClicked(productId);
+    component.addProductToCart(productId);
 
     expect(httpService.addToCart).toHaveBeenCalledWith(userId, productId);
-    expect(window.alert).toHaveBeenCalledWith(mockResponse);
+    expect(window.alert).toHaveBeenCalledWith(mockResponse.message);
   });
 });
