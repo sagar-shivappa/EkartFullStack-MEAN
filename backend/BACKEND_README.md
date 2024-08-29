@@ -87,14 +87,19 @@ Note : We have already added 3 dummy users for the DB. Refer iniliazeDB to find 
 Response:
 {
   user_name:"doSelect",
+  user_id: 2,
   token:"eyeennjnajnsja*******"﻿
 }
 ```
 
 - This endpoint allows you to post the request and validate the credentials.
-- Upon successful validation, the response should have a status code of 201 and the user_name and JWT token as the response.
+- Upon successful validation, the response should have a status code of 201 and the user_name, user_id and JWT token as the response. (Same like the above sample response)
 - If any required fields are missing in the request body, a status code of 400 (Bad Request) should be returned with an error message indicating the missing fields.
-- Validation fails if the user_name and password does not match, then the response should contain a 403 status code, with a message: User Not found
+  {
+  "message": "Validation Error"
+  }
+- Validation fails if the user_name and password does not match, then the response should contain a 403 status code, with a
+  { message: "User Not found" }
 - In case of any error during login, a status code of 500 (Internal Server Error) should be returned with an error message in the response body.
 
 - **`getAllProducts`**:
@@ -106,10 +111,12 @@ Response:
 
 - **`getCartItemsByUserId`**:
 
-  - Takes a user ID as a parameter. Find the user information in the initializeDB.js file.
+  - Takes a user ID as a parameter. Note: You can find the user information in the initializeDB.js file.
   - Searches the collection for the document with the matching user_id.
   - If found, return the document with a 200 status code.
-  - If the user_id is not found, send a 404 status code.
+  - If the user_id is not found, send a 404 status code. Response: {
+    message: "User Not Found"
+    }
   - Errors during retrieval are handled with a 500 status code and an error message.
 
 - **`addToCart`**:
@@ -125,16 +132,16 @@ Response:
 Note : Find the available user_id from CART collection & product_id from PRODUCT collection, refer initialzeDB.js file .
 
 - Pass user_id & product_id in the request body.
-- If the product is already available CART collection, for that user, return a status code of 400 with the message “Product Already in the CART”.
-- If the product information is invalid/not available in the DB, return 400 status code, with message “Invalid Product Information”.
-- Fetch the the product information from PRODUCT collection, and add it to the particular user's cart. Return a status code of 200 and message "Successfully Added to CART "
+- If the product is already available CART collection, for that user, return a status code of 400 with the {message “Product Already in the CART”}.
+- If the product information is invalid/not available in the DB, return 400 status code, with {message : “Invalid Product Information”}
+- Fetch the the product information from PRODUCT collection, and add it to the particular user's cart. Return a status code of 200 and { message : "Successfully Added to CART"}
 - Any errors while adding the product to the cart, handle with a 500 status code and an error message.
 
 - **`removeFromCart`**:
   - Takes a user_id & product_id in the parameters.
   - Searches the CART collection for the document with the matching user_id & product_id.
-  - If found, remove the product from the products array and send 200 status code and message "Product successfully removed".
-  - If the product is not found, return a 404 status code, with the message “Product not found”
+  - If found, remove the product from the products array and send 200 status code and{ message : "Product successfully removed"}
+- If the product is not found, return a 404 status code, with the {message : “Product not found”}
   - Any errors encountered during the product removal are handled with a 500 status code and an error message.
 
 ## Commands
@@ -164,7 +171,7 @@ npm start
 This command will start the server.
 
 - Once the server is started, navigate to the Thunder Client's tab ![Thunder client's tab](https://media-doselect.s3.amazonaws.com/generic/ryM78VN71g10k2dKr9K2wGYwo/ThunderClientLogo.png) and click on `New Request`.
-- Test the API endpoints by sending specific requests to http://localhost:8000/{endpoints}. You can view the JSON response in the "Response" tab.
+- Test the API endpoints by sending specific requests to http://localhost:8002/{endpoints}. You can view the JSON response in the "Response" tab.
 
 ### Run Test Cases:
 
@@ -180,4 +187,4 @@ This will run the test cases in the terminal.
 
 - Node Version: 14.21.3
 - MongoDB Version: 7.0.3
-- Default Port: 8001
+- Default Port: 8002

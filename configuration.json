@@ -1,20 +1,26 @@
 {
   "version": "1.0",
   "default_open_files": [
-    "backend/controllers/student.controller.js",
-    "backend/routes/student.route.js",
+    "backend/controllers/ekart.controller.js",
+    "backend/routes/ekart.route.js",
     "frontend/src/app/services/http-service.service.ts",
-    "frontend/src/app/components/students-data/students-data.component.html",
-    "frontend/src/app/components/students-data/students-data.component.ts",
-    "frontend/src/app/components/add-student-form/add-student-form.component.html",
-    "frontend/src/app/components/add-student-form/add-student-form.component.ts"
+    "frontend/src/app/components/login/login.component.html",
+    "frontend/src/app/components/login/login.component.ts",
+    "frontend/src/app/components/home/home.component.html",
+    "frontend/src/app/components/home/home.component.ts"
   ],
   "read_only_files": [
-    "backend/tests/DeleteStudent.test.js",
-    "backend/tests/GetStudents.test.js",
-    "backend/tests/PostStudent.test.js",
-    "backend/tests/UpdateStudent.test.js",
+    "backend/tests/cart.test.js",
+    "backend/tests/login.test.js",
+    "backend/tests/products.test.js",
     "frontend/src/app/app.component.spec.ts",
+    "frontend/src/app/components/header/header.component.spec.ts",
+    "frontend/src/app/components/home/home.component.spec.ts",
+    "frontend/src/app/components/home/user-cart/user-cart.component.spec.ts",
+    "frontend/src/app/components/login/login.component.spec.ts",
+    "frontend/src/app/gaurd/auth.guard.spec.ts",
+    "frontend/src/app/Interceptor/auth.interceptor.spec.ts",
+    "frontend/src/app/services/auth.services.spec.ts",
     ".gitignore",
     "configuration.json"
   ],

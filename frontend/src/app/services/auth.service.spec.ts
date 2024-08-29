@@ -31,20 +31,6 @@ describe("AuthService", () => {
     expect(httpService).toBeTruthy();
   });
 
-  xit("should fetch data", () => {
-    const mockData = {
-      message: "User Not found",
-    };
-
-    httpService.login("random", "randompwd").subscribe((data) => {
-      expect(data).toEqual(mockData);
-    });
-
-    const req = httpMock.expectOne(`${environment.apiUrl}`);
-    expect(req.request.method).toBe("POST");
-    req.flush(mockData);
-  });
-
   it("should set token", () => {
     service.setToken("user1", "token123", 1);
     expect(localStorage.getItem("token")).toBe("token123");
