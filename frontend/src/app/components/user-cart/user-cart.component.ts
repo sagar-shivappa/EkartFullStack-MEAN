@@ -9,7 +9,7 @@ import { HttpService } from "src/app/services/http-service.service";
 })
 export class UserCartComponent implements OnInit {
   cartItems: any = [];
-  cardButton: string = "Delete from cart";
+  cartButton: string = "Delete from cart";
   navigationButtoName: string = "Home";
 
   constructor(

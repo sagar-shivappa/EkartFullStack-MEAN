@@ -9,17 +9,8 @@ import { HttpService } from "src/app/services/http-service.service";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  items = [
-    {
-      product_id: 1,
-      product_name: "Item 1",
-      product_description: "Description of item 1",
-      price: 19.99,
-      image: "https://via.placeholder.com/150",
-      discount_percentage: "5",
-    },
-  ];
-  cardButton = "Add to Cart";
+  items: any = [];
+  cartButton = "Add to Cart";
   navigationButtoName = "Go to Cart";
 
   constructor(

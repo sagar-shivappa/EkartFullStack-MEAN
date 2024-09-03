@@ -7,15 +7,11 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class AuthService {
-  // private apiUrl = environment.apiUrl;
-  private apiUrl = "http://localhost:8002";
-  private tokenKey = "auth_token";
   private expirationTime = "";
 
   constructor(private http: HttpClient) {}
 
   setToken(user_name: any, token: any, user_id: any) {
-    this.tokenKey = token;
     const expirationTime = new Date().getTime() + 3600000; // 1 hour in milliseconds
     localStorage.setItem("token", token);
     localStorage.setItem("user_name", user_name);
@@ -38,18 +34,6 @@ export class AuthService {
   getUserName(): string {
     const returnValue = localStorage.getItem("user_name");
     return returnValue != null ? returnValue : "";
-  }
-
-  isTokenExpired(): boolean {
-    const token = this.getToken();
-    if (!token) {
-      return true;
-    }
-    const exp = +this.expirationTime;
-    if (!exp) {
-      return true;
-    }
-    return exp * 1000 < Date.now();
   }
 
   logout(): void {

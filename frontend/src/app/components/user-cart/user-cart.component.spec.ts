@@ -7,7 +7,7 @@ import { of } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { HttpService } from "src/app/services/http-service.service";
 import { UserCartComponent } from "./user-cart.component";
-import { HeaderComponent } from "../../header/header.component";
+import { HeaderComponent } from "../header/header.component";
 
 describe("UserCartComponent", () => {
   let component: UserCartComponent;

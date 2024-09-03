@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
-import { UserCartComponent } from "./components/home/user-cart/user-cart.component";
+import { UserCartComponent } from "./components/user-cart/user-cart.component";
 import { LoginComponent } from "./components/login/login.component";
-import { AuthGuard } from "./gaurd/auth.guard";
+import { AuthGuard } from "./guard/auth.guard";
 
 const routes: Routes = [
   { path: "product", component: HomeComponent, canActivate: [AuthGuard] },
