@@ -17,31 +17,13 @@ export class UserCartComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    this.getCartItems();
-  }
+  ngOnInit(): void {}
 
   getCartItems() {
-    this.httpService
-      .cartByUserId(this.authService.getUserId())
-      .subscribe((res) => {
-        this.cartItems = res.products;
-      });
+    //complete the function to get all the cart items
   }
 
   removeItem(prodId: any) {
-    this.httpService
-      .deleteFromCart(this.authService.getUserId(), prodId)
-      .subscribe(
-        (res: any) => {
-          alert(res.message);
-        },
-        (err) => {
-          alert(err.error.message);
-        }
-      );
-    setTimeout(() => {
-      this.getCartItems();
-    }, 100);
+    // complete the function to remove the selected item from the cart and display the remaining items
   }
 }

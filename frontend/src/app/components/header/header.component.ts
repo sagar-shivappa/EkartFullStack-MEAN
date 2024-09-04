@@ -11,16 +11,14 @@ export class HeaderComponent implements OnInit {
   @Input()
   navigationButtoName: string = "";
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   goToButton() {
-    if (this.navigationButtoName == "Go to Cart")
-      this.router.navigate(["cart"]);
-    else this.router.navigate(["product"]);
+    //complete the function
   }
   logout() {
-    this.authService.logout();
+    //complete the logout function
   }
 }

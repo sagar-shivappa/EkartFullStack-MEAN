@@ -31,10 +31,6 @@ describe("LoginComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-
   it("should login successfully and navigate to products page", () => {
     const mockResponse = "Login successful";
     const userName = "test";

@@ -30,9 +30,6 @@ describe("HeaderComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
   it("should call the logout method", () => {
     component.logout();
     expect(httpService.logout).toHaveBeenCalled();

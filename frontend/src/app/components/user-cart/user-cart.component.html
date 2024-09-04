@@ -1,36 +1,6 @@
 <app-header [navigationButtoName]="navigationButtoName"></app-header>
 <div class="container" *ngIf="cartItems">
-  <div class="row" *ngIf="cartItems; else noItem">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let item of cartItems">
-        <div class="card mb-4">
-          <img
-            [src]="'https://via.placeholder.com/150'"
-            class="card-img-top"
-            alt="Item Image"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ item.product_name }}</h5>
-            <p class="card-text">{{ item.product_description }}</p>
-            <div class="row">
-              <p class="card-text col-md-4">
-                Price: {{ item.price | currency : "INR" }}
-              </p>
-              <p class="card-text col-md-4"></p>
-              <p class="card-text col-md-4">
-                Discount: {{ item.discount_percentage }}%
-              </p>
-            </div>
-            <div (click)="removeItem(item.product_id)" class="btn btn-danger">
-              {{ cartButton }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="row" *ngIf="cartItems; else noItem"></div>
 
-  <ng-template #noItem>
-    <div class="col-md-12"><p class="h2 middleOfPage">No item in cart</p></div>
-  </ng-template>
+  <ng-template #noItem> </ng-template>
 </div>

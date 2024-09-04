@@ -1,10 +1,13 @@
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
-import { AuthService } from '../services/auth.service';
-import { AuthInterceptor } from './auth.interceptor';
+import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
+import { AuthService } from "../services/auth.service";
+import { AuthInterceptor } from "./auth.interceptor";
 
-describe('AuthInterceptor', () => {
+describe("AuthInterceptor", () => {
   let interceptor: AuthInterceptor;
   let httpMock: HttpTestingController;
   let authService: AuthService;
@@ -17,15 +20,15 @@ describe('AuthInterceptor', () => {
         {
           provide: AuthService,
           useValue: {
-            getToken: jasmine.createSpy('getToken')
-          }
+            getToken: jasmine.createSpy("getToken"),
+          },
         },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptor,
-          multi: true
-        }
-      ]
+          multi: true,
+        },
+      ],
     });
 
     interceptor = TestBed.inject(AuthInterceptor);
@@ -37,36 +40,18 @@ describe('AuthInterceptor', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
-    expect(interceptor).toBeTruthy();
-  });
-
-  it('should add Authorization header if token is present', () => {
-    (authService.getToken as jasmine.Spy).and.returnValue('test-token');
+  it("should add Authorization header if token is present", () => {
+    (authService.getToken as jasmine.Spy).and.returnValue("test-token");
 
     const httpClient = TestBed.inject(HttpClient);
 
-    httpClient.get('/test').subscribe(response => {
+    httpClient.get("/test").subscribe((response) => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne('/test');
-    expect(req.request.headers.has('Authorization')).toBeTrue();
-    expect(req.request.headers.get('Authorization')).toBe('Bearer test-token');
-    req.flush({});
-  });
-
-  it('should not add Authorization header if token is not present', () => {
-    (authService.getToken as jasmine.Spy).and.returnValue('');
-
-    const httpClient = TestBed.inject(HttpClient);
-
-    httpClient.get('/test').subscribe(response => {
-      expect(response).toBeTruthy();
-    });
-
-    const req = httpMock.expectOne('/test');
-    expect(req.request.headers.has('Authorization')).toBeFalse();
+    const req = httpMock.expectOne("/test");
+    expect(req.request.headers.has("Authorization")).toBeTrue();
+    expect(req.request.headers.get("Authorization")).toBe("Bearer test-token");
     req.flush({});
   });
 });

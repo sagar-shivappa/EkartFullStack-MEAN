@@ -22,16 +22,8 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // return true; // comment this for application working
-    let token = this.authService.getToken();
-    let finToken = token === "" ? null : token;
+    // complete the Route guard to validate the token
 
-    if (finToken != null) {
-      return true;
-    } else {
-      alert("Please Login");
-      this.router.navigate(["/login"]); // Redirect to login page if not authenticated - SG
-      return false;
-    }
+    return false;
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -12,30 +12,25 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, {
-      user_name: username,
-      password: password,
-    });
+    //complete the http request
+    return of("");
   }
   addToCart(userId: number, product_id: number): Observable<Object> {
-    let url = `${this.apiUrl}`;
-    return this.http.post<any>(`${url}/cart`, {
-      user_id: userId,
-      product_id: product_id,
-    });
+    //complete the http request
+    return of("");
   }
   deleteFromCart(userId: number, product_id: number): Observable<Object> {
-    let url = `${this.apiUrl}`;
-    return this.http.delete<any>(`${url}/cart/${userId}/${product_id}`);
+    //complete the http request
+    return of("");
   }
 
   cartByUserId(userId: number): Observable<any> {
-    let url = `${this.apiUrl}`;
-    return this.http.get<any>(`${url}/cart/${userId}`);
+    //complete the http request
+    return of("");
   }
 
-  getProducts() {
-    let url = `${this.apiUrl}`;
-    return this.http.get<any>(`${url}/products`);
+  getProducts(): Observable<any> {
+    //complete the http request
+    return of("");
   }
 }

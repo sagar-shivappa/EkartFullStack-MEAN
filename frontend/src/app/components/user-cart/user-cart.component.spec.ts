@@ -31,9 +31,6 @@ describe("UserCartComponent", () => {
     fixture.detectChanges(); // inject testbed for all services required - SG
   });
 
-  it("should create the component", () => {
-    expect(component).toBeTruthy();
-  }); // Default test case for creatation - SG
   it("should call getCartItems and populate cartItems", () => {
     const mockCartData = {
       _id: "66a3730d4fdf1d6001533c93",
@@ -61,24 +58,5 @@ describe("UserCartComponent", () => {
 
     expect(httpService.cartByUserId).toHaveBeenCalledWith(1);
     expect(component.cartItems).toEqual(mockCartData.products);
-  });
-
-  xit("should call removeItem and refresh cart", () => {
-    const mockResponse = { message: "Item Successfully Removed" };
-    const productId = 123;
-    const userId = 1;
-    spyOn(authService, "getUserId").and.returnValue(userId);
-    spyOn(httpService, "deleteFromCart").and.returnValue(of(mockResponse));
-    spyOn(window, "alert"); // Mock window alert
-
-    component.removeItem(productId);
-
-    // expect(httpService.deleteFromCart).toHaveBeenCalledWith(
-    //   userId,
-    //   productId
-    // );
-    //expect(window.alert).toHaveBeenCalledWith(mockResponse.message);
-
-    expect(window.alert).toHaveBeenCalledWith(mockResponse.message);
   });
 });

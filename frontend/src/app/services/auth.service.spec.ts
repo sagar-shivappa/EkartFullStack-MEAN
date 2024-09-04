@@ -26,11 +26,6 @@ describe("AuthService", () => {
     httpMock.verify();
   });
 
-  it("should be created", () => {
-    expect(service).toBeTruthy();
-    expect(httpService).toBeTruthy();
-  });
-
   it("should set token", () => {
     service.setToken("user1", "token123", 1);
     expect(localStorage.getItem("token")).toBe("token123");
@@ -54,6 +49,8 @@ describe("AuthService", () => {
   });
 
   it("should clear token on logout", async () => {
+    localStorage.setItem("user_name", "1");
+    localStorage.setItem("token", "1");
     await service.logout();
     expect(localStorage.getItem("token")).toBeNull();
     expect(localStorage.getItem("user_name")).toBeNull();

@@ -24,25 +24,10 @@ export class HomeComponent implements OnInit {
   }
 
   getItems() {
-    this.httpService.getProducts().subscribe(
-      (res) => {
-        this.items = res;
-      },
-      (err) => {
-        alert(`Something went wrong, please try again!`);
-        this.router.navigate(["/login"]);
-      }
-    );
+    //complete the function
   }
 
   addProductToCart(prodId: any) {
-    this.httpService.addToCart(this.authService.getUserId(), prodId).subscribe(
-      (res: any) => {
-        alert(res.message);
-      },
-      (err) => {
-        alert(err.error.message);
-      }
-    );
+    //complete the function
   }
 }
