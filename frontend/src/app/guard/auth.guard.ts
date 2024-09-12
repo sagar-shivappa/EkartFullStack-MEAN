@@ -8,12 +8,17 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthService } from "../services/auth.service";
+import { HttpService } from "../services/http-service.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private httpService: HttpService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,8 +27,16 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // complete the Route guard to validate the token
+    // return true; // comment this for application working
+    let token = this.authService.getToken();
+    let finToken = token === "" ? null : token;
 
-    return false;
+    if (finToken != null) {
+      return true;
+    } else {
+      this.httpService.setMessenger("Please Login");
+      this.router.navigate(["/login"]); // Redirect to login page if not authenticated - SG
+      return false;
+    }
   }
 }
