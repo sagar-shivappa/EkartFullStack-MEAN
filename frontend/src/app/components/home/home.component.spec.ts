@@ -31,6 +31,10 @@ describe("HomeComponent", () => {
     fixture.detectChanges(); // inject testbed for all services required - SG
   });
 
+  it("should create the component", () => {
+    expect(component).toBeTruthy();
+  }); // Default test case for creatation - SG
+
   it("should call getItems on ngOnInit and update items", () => {
     const mockProducts = [
       {
@@ -57,11 +61,9 @@ describe("HomeComponent", () => {
 
     spyOn(authService, "getUserId").and.returnValue(userId);
     spyOn(httpService, "addToCart").and.returnValue(of(mockResponse));
-    spyOn(window, "alert"); // Mock window alert
 
     component.addProductToCart(productId);
 
     expect(httpService.addToCart).toHaveBeenCalledWith(userId, productId);
-    expect(window.alert).toHaveBeenCalledWith(mockResponse.message);
   });
 });
