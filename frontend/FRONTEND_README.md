@@ -32,7 +32,8 @@ The project consists of the following components:
 - **Does login process** using `login` from `HttpService`.
 - Use **onSubmit()** function to call the `login` method from `HttpService` service.
 - Pass username and password parameters
-- On success, route the page to products, with window alter message "Login successful"
+- On success pass "Login successful" to **setMessenger** of `HttpService` to display the message
+- On success route the page to _products_
 - Use **setToken** from AuthService to save the response, username, user_id and token in local storage
 - If any error occurs, show the error message in window alert
 
@@ -47,7 +48,7 @@ The project consists of the following components:
 
 - Header component has @input() navigationButtoName parameter to dynamically provide the button name.
 - **goToButton()** decides the navigate to cart view or the products home page based on the @input() parameter navigationButtoName
-- **logout()** uses `logout` from AuthService, to remove the session information
+- **logout()** uses `logout` from AuthService, to remove the session information from local storage.
 
 ### [header.component.html](src/app/components/header/header.component.html)
 
@@ -64,7 +65,7 @@ The project consists of the following components:
 - `addProductToCart` method takes `product id` as a parameter. This method should call `addToCart` from `HttpService` service.
 - `addToCart` takes 2 parameters, user_id and product_id.
 - call `getUserId` from `AuthService` to fetch user_id.
-- if any error display the error in the window alert
+- Use **setMessenger** of `HttpService` to display the message coming as a HTTP response.
 
 ### [home.component.html](src/app/components/home/home.component.html)
 
@@ -81,7 +82,7 @@ The project consists of the following components:
 - pass `user id` as a parameter to `cartByUserId` from `HttpService` service
 - set `cartItems` value using the response.
 - If something goes wrong, redirect the user to login page.
-- if any error display the error in the window alert.
+- Use **setMessenger** of `HttpService` to display the message coming as a HTTP response.
 
 ### [user-cart.component.html](src/app/components/user-cart/user-cart.component.html)
 
@@ -99,6 +100,7 @@ The project consists of the following components:
   - `addToCart`: Adds a product to the cart for a particular user_id and product_id by making a request to `{apiUrl}cart` endpoint
   - `deleteFromCart`: Delete a product to the cart for a particular user_id and product_id by making a DELETE request to `{apiUrl}cart/{user_id}/{product_id}` endpoint
   - `cartByUserId`: Gets all the items for a particular user_id by making a GET request to `{apiUrl}cart/{user-id}` endpoint
+  - `setMessenger`: Should pass the message to `message$` using next().
 
 ### [auth.service.ts](src/app/services/auth.service.ts)
 
