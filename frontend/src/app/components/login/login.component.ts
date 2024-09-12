@@ -21,20 +21,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.httpService.login(this.username, this.password).subscribe(
-      (response) => {
-        this.router.navigate(["product"]);
-        this.httpService.setMessenger("Login successful");
-        this.authService.setToken(
-          this.username,
-          response.token,
-          response.user_id
-        );
-        // Redirect or perform other actions after successful login
-      },
-      (error) => {
-        this.httpService.setMessenger(`Login failed: ${error.error.message}`);
-      }
-    );
+    //complete the function
   }
 }
