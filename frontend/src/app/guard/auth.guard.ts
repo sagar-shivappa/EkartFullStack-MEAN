@@ -8,12 +8,17 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthService } from "../services/auth.service";
+import { HttpService } from "../services/http-service.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private httpService: HttpService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -29,7 +34,7 @@ export class AuthGuard implements CanActivate {
     if (finToken != null) {
       return true;
     } else {
-      alert("Please Login");
+      this.httpService.setMessenger("Please Login");
       this.router.navigate(["/login"]); // Redirect to login page if not authenticated - SG
       return false;
     }

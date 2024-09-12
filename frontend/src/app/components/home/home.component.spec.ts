@@ -61,11 +61,9 @@ describe("HomeComponent", () => {
 
     spyOn(authService, "getUserId").and.returnValue(userId);
     spyOn(httpService, "addToCart").and.returnValue(of(mockResponse));
-    spyOn(window, "alert"); // Mock window alert
 
     component.addProductToCart(productId);
 
     expect(httpService.addToCart).toHaveBeenCalledWith(userId, productId);
-    expect(window.alert).toHaveBeenCalledWith(mockResponse.message);
   });
 });

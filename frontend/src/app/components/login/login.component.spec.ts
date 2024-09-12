@@ -41,13 +41,11 @@ describe("LoginComponent", () => {
     const password = "test";
 
     spyOn(httpService, "login").and.returnValue(of(mockResponse));
-    spyOn(window, "alert"); // Mock window alert
     component.username = userName;
     component.password = password;
     component.onSubmit();
     expect(httpService.login).toHaveBeenCalledWith(userName, password);
     expect(router.navigate).toHaveBeenCalledWith(["product"]);
-    expect(window.alert).toHaveBeenCalledWith(mockResponse);
   });
   it("should login successfully and navigate to products page", () => {
     const userName = "test";
@@ -56,14 +54,11 @@ describe("LoginComponent", () => {
     spyOn(httpService, "login").and.returnValue(
       throwError({ error: { message: "Invalid Credentials" } })
     );
-    spyOn(window, "alert"); // Mock window alert
+
     component.username = userName;
     component.password = password;
     component.onSubmit();
     expect(httpService.login).toHaveBeenCalledWith(userName, password);
     expect(router.navigate).not.toHaveBeenCalledWith(["product"]);
-    expect(window.alert).toHaveBeenCalledWith(
-      `Login failed: Invalid Credentials`
-    );
   });
 });

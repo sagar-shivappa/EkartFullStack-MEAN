@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit {
         this.items = res;
       },
       (err) => {
-        alert(`Something went wrong, please try again!`);
+        this.httpService.setMessenger(
+          "Something went wrong, please try again!"
+        );
         this.router.navigate(["/login"]);
       }
     );
@@ -38,10 +40,10 @@ export class HomeComponent implements OnInit {
   addProductToCart(prodId: any) {
     this.httpService.addToCart(this.authService.getUserId(), prodId).subscribe(
       (res: any) => {
-        alert(res.message);
+        this.httpService.setMessenger(res.message);
       },
       (err) => {
-        alert(err.error.message);
+        this.httpService.setMessenger(err.error.message);
       }
     );
   }

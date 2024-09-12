@@ -34,10 +34,10 @@ export class UserCartComponent implements OnInit {
       .deleteFromCart(this.authService.getUserId(), prodId)
       .subscribe(
         (res: any) => {
-          alert(res.message);
+          this.httpService.setMessenger(res.message);
         },
         (err) => {
-          alert(err.error.message);
+          this.httpService.setMessenger(err.error.message);
         }
       );
     setTimeout(() => {

@@ -1,3 +1,6 @@
 <div>
+  <div [ngClass]="{ messenger: (message$ | async) !== '' }">
+    {{ message$ | async | uppercase }}
+  </div>
   <router-outlet></router-outlet>
 </div>
