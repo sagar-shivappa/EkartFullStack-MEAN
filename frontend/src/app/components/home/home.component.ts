@@ -24,27 +24,10 @@ export class HomeComponent implements OnInit {
   }
 
   getItems() {
-    this.httpService.getProducts().subscribe(
-      (res) => {
-        this.items = res;
-      },
-      (err) => {
-        this.httpService.setMessenger(
-          "Something went wrong, please try again!"
-        );
-        this.router.navigate(["/login"]);
-      }
-    );
+    //complete the function
   }
 
   addProductToCart(prodId: any) {
-    this.httpService.addToCart(this.authService.getUserId(), prodId).subscribe(
-      (res: any) => {
-        this.httpService.setMessenger(res.message);
-      },
-      (err) => {
-        this.httpService.setMessenger(err.error.message);
-      }
-    );
+    //complete the function
   }
 }

@@ -31,10 +31,6 @@ describe("HomeComponent", () => {
     fixture.detectChanges(); // inject testbed for all services required - SG
   });
 
-  it("should create the component", () => {
-    expect(component).toBeTruthy();
-  }); // Default test case for creatation - SG
-
   it("should call getItems on ngOnInit and update items", () => {
     const mockProducts = [
       {
