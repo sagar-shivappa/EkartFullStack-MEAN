@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: window.location.href.replace("8000","8002")
+  apiUrl: "http://localhost:8002/",
 };
 
 /*
