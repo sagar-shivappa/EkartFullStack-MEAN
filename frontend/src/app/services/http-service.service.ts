@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -8,7 +9,7 @@ import { BehaviorSubject, Observable, of } from "rxjs";
 export class HttpService {
   //Paste URL of Live Prview of Port:8001 below
   //  apiUrl: string = environment.apiUrl
-  apiUrl: string = "http://localhost:8002";
+  apiUrl: string = environment.apiUrl;
   message$ = new BehaviorSubject("");
 
   constructor(private http: HttpClient) {}
