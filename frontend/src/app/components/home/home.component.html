@@ -5,11 +5,6 @@
     <div class="row">
       <div class="col-md-4" *ngFor="let item of items">
         <div class="card mb-4">
-          <img
-            [src]="'https://via.placeholder.com/150'"
-            class="card-img-top"
-            alt="Item Image"
-          />
           <div class="card-body">
             <h5 class="card-title">{{ item.product_name }}</h5>
             <p class="card-text">{{ item.product_description }}</p>
@@ -24,7 +19,7 @@
             </div>
             <div
               (click)="addProductToCart(item.product_id)"
-              class="btn btn-primary"
+              class="btn btn-info"
             >
               {{ cartButton }}
             </div>
